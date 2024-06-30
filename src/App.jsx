@@ -114,6 +114,7 @@ function App() {
           <FormControl>
             <HStack >
               <MdOutlineEmojiEmotions
+                className="emoji-picker"
                 size={"2em"}
                 onClick={handleEmojiToggle}
               />
