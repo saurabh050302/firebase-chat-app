@@ -1,6 +1,7 @@
 # Real-Time Chat App
 
 A real-time chat application that allows users to sign in with Google or chat anonymously in a shared chatroom.
+Check it out [here](https://chat-app-3862f.web.app/)
 
 ## Features
 
