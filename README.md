@@ -8,11 +8,13 @@ A real-time chat application that allows users to sign in with Google or chat an
 - Anonymous sign-in
 - Real-time messaging
 - Responsive design
+- Emoji picker
 
 ## Technologies Used
 
 - React
 - Chakra UI
+- Emoji Picker React
 - Firebase (Authentication and Firestore Database)
 
 
