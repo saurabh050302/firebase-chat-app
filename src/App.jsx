@@ -50,7 +50,10 @@ function App() {
     })
   }, [])
 
-  const handleChange = (e) => { setMessage(e.target.value) }
+  const handleChange = (e) => {
+    setMessage(e.target.value)
+    if (e.key === "Enter" && message != "") handleSendMessage();
+  }
 
   const handleSendMessage = async () => {
     try {
@@ -100,8 +103,8 @@ function App() {
 
           <FormControl>
             <HStack>
-              <Input placeholder="type your message" value={message} onChange={handleChange}></Input>
-              <Button colorScheme="green" onClick={handleSendMessage}>Send</Button>
+              <Input placeholder="type your message" value={message} onChange={handleChange} onKeyUp={handleChange}></Input>
+              <Button colorScheme="green" onClick={handleSendMessage} >Send</Button>
             </HStack>
           </FormControl>
 
