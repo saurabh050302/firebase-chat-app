@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from "react";
 
 import Message from "./components/Message"
 import { Box, Button, Container, FormControl, HStack, Input, VStack } from "@chakra-ui/react"
+import { MdOutlineEmojiEmotions } from "react-icons/md";
+import EmojiPicker from 'emoji-picker-react';
 
 import { app } from "./firebase"
 import { getAuth, GoogleAuthProvider, signInWithPopup, signInAnonymously, onAuthStateChanged, signOut } from "firebase/auth"
@@ -28,6 +30,7 @@ function App() {
   const [messages, setMessages] = useState([]);
   const q = query(collection(db, "Messages"), orderBy("createdAt", "asc"));
   const refForScroll = useRef(null);
+  const [showemojiPanel, setShowEmojiPanel] = useState(false);
 
   useEffect(() => {
     if (refForScroll.current)
@@ -50,12 +53,19 @@ function App() {
     })
   }, [])
 
+  const handleEmojiToggle = () => {
+    setShowEmojiPanel(!showemojiPanel)
+  }
+
   const handleChange = (e) => {
+    setShowEmojiPanel(false)
     setMessage(e.target.value)
-    if (e.key === "Enter" && message != "") handleSendMessage();
+    if (e.key === "Enter") handleSendMessage();
   }
 
   const handleSendMessage = async () => {
+    if (message === "") return;
+    setShowEmojiPanel(false);
     try {
       setMessage("");
 
@@ -102,9 +112,29 @@ function App() {
           </VStack>
 
           <FormControl>
-            <HStack>
-              <Input placeholder="type your message" value={message} onChange={handleChange} onKeyUp={handleChange}></Input>
-              <Button colorScheme="green" onClick={handleSendMessage} >Send</Button>
+            <HStack >
+              <MdOutlineEmojiEmotions
+                size={"2em"}
+                onClick={handleEmojiToggle}
+              />
+              <EmojiPicker
+                open={showemojiPanel}
+                style={{ position: "absolute", bottom: "2.75em" }}
+                skinTonesDisabled={true}
+                onEmojiClick={(emoji) => setMessage(message + emoji.emoji)}
+              />
+              <Input
+                placeholder="type your message"
+                value={message}
+                onChange={handleChange}
+                onKeyUp={handleChange}
+                onClick={handleChange}
+              />
+              <Button
+                colorScheme="green"
+                onClick={handleSendMessage} >
+                Send
+              </Button>
             </HStack>
           </FormControl>
 
