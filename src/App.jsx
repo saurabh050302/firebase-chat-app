@@ -103,7 +103,7 @@ function App() {
                 <Message
                   key={item.id}
                   text={item.text}
-                  uri={item.uri}
+                  uri={item.uri || `https://api.multiavatar.com/${item.uid}.svg`}
                   user={item.uid === user.uid ? "me" : "other"}
                 />
               ))
