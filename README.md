@@ -1,6 +1,7 @@
 # Real-Time Chat App
 
 A real-time chat application that allows users to sign in with Google or chat anonymously in a shared chatroom.
+Check it out [here](https://chat-app-3862f.web.app/)
 
 ## Features
 
@@ -8,11 +9,13 @@ A real-time chat application that allows users to sign in with Google or chat an
 - Anonymous sign-in
 - Real-time messaging
 - Responsive design
+- Emoji picker
 
 ## Technologies Used
 
 - React
 - Chakra UI
+- Emoji Picker React
 - Firebase (Authentication and Firestore Database)
 
 
